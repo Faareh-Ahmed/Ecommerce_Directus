@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* global.css */
+
+/* Reset some default browser styles */
+body,
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+  padding: 0;
+  background-color: rgb(255,255,255);
+}
+
+/* Apply a global font or other styles */
+body {
+  font-family: 'Arial', sans-serif;
+}
+
+/* Add more global styles as needed */
