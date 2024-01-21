@@ -8,6 +8,7 @@ export async function getProducts() {
           id
           product_name
           price
+          slug
           product_image{
             id
           }
@@ -15,6 +16,7 @@ export async function getProducts() {
             categories_id{
               id
               category_name
+              slug
             }
           }
         }
@@ -39,6 +41,7 @@ export async function getCategories() {
         categories{
           id
           category_name
+          slug
         }
       }
     `;
@@ -67,6 +70,7 @@ export async function getFilteredProducts(categories) {
           id
           product_name
           price
+          slug
           product_image{
             id
           }
@@ -81,6 +85,41 @@ export async function getFilteredProducts(categories) {
     `;
 
     const response = await axios.post('http://localhost:8055/graphql', {query, variables:{categories}});
+
+    console.log(response.data.data.products);
+    return response.data.data.products;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    throw error; // Re-throw the error to handle it further up the call stack if needed
+  }
+}
+
+
+
+export async function getSingleProduct() {
+  try {
+    const query = `
+      query($product_slug: String) {
+        products(filter: {slug: {_eq: $product_slug}}){
+          id
+          product_name
+          price
+          slug
+          product_image{
+            id
+          }
+          product_category{
+            categories_id{
+              id
+              category_name
+              slug
+            }
+          }
+        }
+      }
+    `;
+
+    const response = await axios.post('http://localhost:8055/graphql', { query });
 
     console.log(response.data.data.products);
     return response.data.data.products;

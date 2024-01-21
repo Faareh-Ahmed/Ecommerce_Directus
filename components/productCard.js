@@ -1,10 +1,10 @@
-// components/ProductCard.js
 import React from 'react';
+import Link from 'next/link';
 
 const ProductCard = ({ product }) => {
     return (
         <>
-        <a href='#' className='group'>
+        <Link href={`/product/${product.product_category[0].categories_id.slug}/${product.slug}`}>
             <div>
                 <img src={`http://localhost:8055/assets/${product.product_image.id}?width=380&height=400`} alt="Black machined steel pen with hexagonal grip and small white logo at top." className="h-full w-full object-cover object-center group-hover:opacity-75" />
             </div>
@@ -17,8 +17,7 @@ const ProductCard = ({ product }) => {
                 </h3>
                 <p className="mt-1 text-gray-900 text-lg font-medium">${product.price}</p>
             </div>
-
-            </a>
+            </Link>
         </>
 
     );
