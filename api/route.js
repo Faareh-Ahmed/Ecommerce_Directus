@@ -96,7 +96,9 @@ export async function getFilteredProducts(categories) {
 
 
 
-export async function getSingleProduct() {
+export async function getSingleProduct(product_slug) {
+  console.log("Inside Single Product query");
+  console.log(product_slug);
   try {
     const query = `
       query($product_slug: String) {
@@ -119,7 +121,7 @@ export async function getSingleProduct() {
       }
     `;
 
-    const response = await axios.post('http://localhost:8055/graphql', { query });
+    const response = await axios.post('http://localhost:8055/graphql', { query, variables:{product_slug} });
 
     console.log(response.data.data.products);
     return response.data.data.products;
