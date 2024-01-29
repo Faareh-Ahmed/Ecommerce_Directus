@@ -12,6 +12,8 @@ const ProductCard = ({ product }) => {
         setSelectedProduct(product);
         console.log("Clicked");
         console.log(selectedProduct);
+        localStorage.removeItem('single-product');
+
     };
 
     return (

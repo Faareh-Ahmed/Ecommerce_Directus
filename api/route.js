@@ -110,6 +110,22 @@ export async function getSingleProduct(product_slug) {
           product_image{
             id
           }
+          available_color{
+            product_color_id{
+              id
+              color_name
+              color_value
+            }
+          }
+          available_sizes{
+            product_sizes_id{
+              id
+              long_title
+              short_title
+            }
+          }
+          show_colors
+          show_sizes
           product_category{
             categories_id{
               id
